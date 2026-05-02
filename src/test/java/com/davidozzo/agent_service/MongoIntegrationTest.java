@@ -2,8 +2,8 @@ package com.davidozzo.agent_service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.davidozzo.agent_service.model.TestDocument;
-import com.davidozzo.agent_service.repository.TestDocumentRepository;
+import com.davidozzo.agent_service.domain.customer.Customer;
+import com.davidozzo.agent_service.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 class MongoIntegrationTest {
 
     @Autowired
-    private TestDocumentRepository repository;
+    private CustomerRepository repository;
 
     @BeforeEach
     void cleanUp() {
@@ -23,11 +23,15 @@ class MongoIntegrationTest {
     }
 
     @Test
-    void shouldSaveAndReadDocumentFromMongo() {
-        TestDocument saved = repository.save(new TestDocument("ping"));
+    void shouldSaveAndReadCustomerFromMongo() {
+        Customer saved = repository.save(Customer.builder()
+                .name("John Doe")
+                .email("john@example.com")
+                .churnRiskScore(0.2)
+                .build());
 
         assertThat(saved.getId()).isNotBlank();
         assertThat(repository.findById(saved.getId())).isPresent();
-        assertThat(repository.findByName("ping")).isPresent();
+        assertThat(repository.findByEmail("john@example.com")).isPresent();
     }
 }
