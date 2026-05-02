@@ -34,11 +34,6 @@ docker exec -it mongodb mongosh -u admin -p secret --eval "db.version()"
 
 # Ollama
 curl http://localhost:11434/api/tags
-```
-
-### Interfaccia web MongoDB
-
-Mongo Express è disponibile su **http://localhost:8081**
 
 ---
 
