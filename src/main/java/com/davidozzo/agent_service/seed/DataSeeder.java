@@ -19,7 +19,6 @@ import java.util.List;
 
 @Slf4j
 @Component
-@Profile("!test")
 @RequiredArgsConstructor
 public class DataSeeder implements CommandLineRunner {
 

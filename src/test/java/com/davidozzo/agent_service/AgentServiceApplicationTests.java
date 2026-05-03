@@ -1,10 +1,8 @@
 package com.davidozzo.agent_service;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class AgentServiceApplicationTests {
+class AgentServiceApplicationTests extends BaseIntegrationTest {
 
 	@Test
 	void contextLoads() {
